@@ -1,0 +1,74 @@
+﻿@model Ejercicio2.Models.Arreglo
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<head></head>
+<body>
+    <div class="row" style="float:left; margin-top: 20px">
+        @using (Html.BeginForm("Index", "Arreglo", FormMethod.Post))
+        {
+            <h2>Mayor y menor de 10 numeros</h2>
+
+            <div style="margin-top: 20px; width: 110%">
+                <table style="float:left; width:400px;">
+                    <thead>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <tr>
+                                <td scope="row">Numero @(i + 1)</td>
+                                <td><input type="number" id="num@(i+1)" name="num" class="form-control" value="@Model.Numeros[i]" /></td>
+                                <td></td>
+                            </tr>
+                        }
+                    </thead>
+                </table>
+
+                <table class="table table-bordered"
+                       style="width: 200px; border: none; float: right; text-align: center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Mayor</th>
+                            <th scope="col">Menor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col">@Model.Mayor</th>
+                            <th scope="col">@Model.Menor</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2" style="border: 0;">
+                                <button type="submit" style="margin: auto; width:100%" class="btn btn-info"
+                                        id="cal" value="cal" name="calcular">
+                                    Calcular
+                                </button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+
+    <div style="width:300px; text-align:center; float:right; margin-top:20px">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Numeros ingresados</th>
+                    <th scope="col">Suma del primer numero</th>
+                </tr>
+                @for (int i = 0; i < 10; i++)
+                {
+                    <tr>
+                        <td scope="row">@Model.Numeros[i]</td>
+                        <td>@(Model.Numeros[i] + Model.Numeros[0])</td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+
